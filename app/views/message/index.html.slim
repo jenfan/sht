@@ -1,0 +1,21 @@
+p 
+	| gps
+	input#gps value=get_gps_string_token
+button#submit_gps type="submit" class="btn btn-primary" Save
+
+.wrap
+	#messages
+		table
+			tr
+				th - body
+				th - latitude
+				th - longitude
+			-@msgs.each do |x|
+				tr
+					td= x.body
+					td= x.latitude
+					td= x.longitude
+				end
+	=text_field_tag(:body)
+	button type="submit" class="btn btn-success" Reload
+	button#submit type="submit" class="btn btn-primary" Submit

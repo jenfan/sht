@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sht</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "sample app", root_path, id: "logo", class:"navbar-brand" %>
+          <%= link_to current_user.name, user_path(current_user), id: "logo", class:"navbar-brand" if current_user %>
+          <nav>
+            <ul class="nav navbar-nav" style="margin-left:250px">
+              <li><%= link_to "Get",    '#', class:"blue" %></li>
+              <li><%= link_to "Create",    '#', class:"blue" %></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+              <li><%= link_to "Sign in", signin_path %></li>
+              <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+	  <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+	  <% end %>
+      <%= yield %>
+    </div>
+    <%= debug params %>
+  </body>
+</html>
+
+<style type="text/css">
+.blue {color: #428bca !important; }
+.blue:hover {color: #fff !important; }
+</style>
